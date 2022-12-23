@@ -1,4 +1,4 @@
-package com.devsuperior.bds02;
+package com.devsuperior.bds02.controllers;
 
 import com.devsuperior.bds02.dto.CityDTO;
 import com.devsuperior.bds02.services.CityService;
@@ -28,5 +28,11 @@ public class CityController {
         CityDTO entity = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/cities").build().toUri();
         return ResponseEntity.created(uri).body(entity);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable final Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
